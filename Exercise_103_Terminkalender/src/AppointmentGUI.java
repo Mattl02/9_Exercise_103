@@ -10,11 +10,15 @@
  */
 public class AppointmentGUI extends javax.swing.JFrame {
 
+    private AppointmentModell model = new AppointmentModell();
     /**
      * Creates new form AppointmentGUI
      */
     public AppointmentGUI() {
         initComponents();
+        
+        listAppointments.setModel(model);
+        listAppointments.setComponentPopupMenu(jPopupMenu1);
     }
 
     /**
@@ -26,9 +30,19 @@ public class AppointmentGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        miAdd = new javax.swing.JMenuItem();
         panelForm = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listAppointments = new javax.swing.JList<>();
+
+        miAdd.setText("hinzufügen");
+        miAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(miAdd);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -49,6 +63,14 @@ public class AppointmentGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
+        AppointmentDlg dialog = new AppointmentDlg(this, true);
+        dialog.setVisible(true);
+        if(dialog.isOk()){
+            model.add(dialog.getAppointment());
+        }
+    }//GEN-LAST:event_miAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,8 +108,10 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> listAppointments;
+    private javax.swing.JMenuItem miAdd;
     private javax.swing.JPanel panelForm;
     // End of variables declaration//GEN-END:variables
 }

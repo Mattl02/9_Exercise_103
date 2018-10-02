@@ -1,3 +1,7 @@
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +14,8 @@
  */
 public class AppointmentDlg extends javax.swing.JDialog {
 
+    private boolean ok;
+    private Appointment appointment;
     /**
      * Creates new form AppointmentDlg
      */
@@ -17,6 +23,15 @@ public class AppointmentDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    public boolean isOk() {
+        return ok;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,21 +42,94 @@ public class AppointmentDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        lbTag = new javax.swing.JLabel();
+        tfTag = new javax.swing.JTextField();
+        lbMonat = new javax.swing.JLabel();
+        tfMonat = new javax.swing.JTextField();
+        lbJahr = new javax.swing.JLabel();
+        tfJahr = new javax.swing.JTextField();
+        lbStunde = new javax.swing.JLabel();
+        tfStunde = new javax.swing.JTextField();
+        lbMinute = new javax.swing.JLabel();
+        tfMinute = new javax.swing.JTextField();
+        lbText = new javax.swing.JLabel();
+        tfText = new javax.swing.JTextField();
+        btUebernehmen = new javax.swing.JButton();
+        btAbbrechen = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout(7, 2));
+
+        lbTag.setText("Tag:");
+        getContentPane().add(lbTag);
+
+        tfTag.setText("08");
+        getContentPane().add(tfTag);
+
+        lbMonat.setText("Monat:");
+        getContentPane().add(lbMonat);
+
+        tfMonat.setText("09");
+        getContentPane().add(tfMonat);
+
+        lbJahr.setText("Jahr:");
+        getContentPane().add(lbJahr);
+
+        tfJahr.setText("2014");
+        getContentPane().add(tfJahr);
+
+        lbStunde.setText("Stunde:");
+        getContentPane().add(lbStunde);
+
+        tfStunde.setText("08");
+        getContentPane().add(tfStunde);
+
+        lbMinute.setText("Minute:");
+        getContentPane().add(lbMinute);
+
+        tfMinute.setText("45");
+        getContentPane().add(tfMinute);
+
+        lbText.setText("Text");
+        getContentPane().add(lbText);
+
+        tfText.setText("POS1-Workshop");
+        getContentPane().add(tfText);
+
+        btUebernehmen.setText("übernehmen");
+        btUebernehmen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUebernehmenActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btUebernehmen);
+
+        btAbbrechen.setText("abbrechen");
+        btAbbrechen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbbrechenActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btAbbrechen);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUebernehmenActionPerformed
+        String s = String.format("%s-%02s-%02s-%02s-%02s", tfJahr.getText()+"-"+
+                tfMonat.getText()+"-"+tfTag.getText()+"-"+tfStunde.getText()+
+                "-"+tfMinute.getText());
+        LocalDateTime date = LocalDateTime.parse(s,
+                DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm"));
+        appointment = new Appointment(date, tfText.getText());
+        ok = true;
+        this.dispose();
+    }//GEN-LAST:event_btUebernehmenActionPerformed
+
+    private void btAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbbrechenActionPerformed
+        ok = false;
+        this.dispose();
+    }//GEN-LAST:event_btAbbrechenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +174,19 @@ public class AppointmentDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAbbrechen;
+    private javax.swing.JButton btUebernehmen;
+    private javax.swing.JLabel lbJahr;
+    private javax.swing.JLabel lbMinute;
+    private javax.swing.JLabel lbMonat;
+    private javax.swing.JLabel lbStunde;
+    private javax.swing.JLabel lbTag;
+    private javax.swing.JLabel lbText;
+    private javax.swing.JTextField tfJahr;
+    private javax.swing.JTextField tfMinute;
+    private javax.swing.JTextField tfMonat;
+    private javax.swing.JTextField tfStunde;
+    private javax.swing.JTextField tfTag;
+    private javax.swing.JTextField tfText;
     // End of variables declaration//GEN-END:variables
 }
