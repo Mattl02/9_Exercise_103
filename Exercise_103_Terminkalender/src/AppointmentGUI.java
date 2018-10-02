@@ -26,18 +26,26 @@ public class AppointmentGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        panelForm = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listAppointments = new javax.swing.JList<>();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout(1, 1));
+
+        panelForm.setBorder(javax.swing.BorderFactory.createTitledBorder("Termine"));
+        panelForm.setLayout(new java.awt.BorderLayout());
+
+        listAppointments.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listAppointments);
+
+        panelForm.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(panelForm);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,5 +86,8 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listAppointments;
+    private javax.swing.JPanel panelForm;
     // End of variables declaration//GEN-END:variables
 }
