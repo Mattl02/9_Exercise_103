@@ -39,7 +39,6 @@ public class AppointmentModell extends AbstractListModel{
         for (Appointment a : appointments) {
             oos.writeObject(a);
         }
-        
         oos.flush();
         oos.close();
     }

@@ -1,5 +1,6 @@
 
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,7 +30,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
             model.load();
         }
         catch(Exception ex){
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occured while loading saved entries.", "Error", JOptionPane.OK_OPTION);
         }
     }
 
@@ -127,7 +128,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
             model.save();
         }
         catch(Exception ex){
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occured while saving entries.", "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_formWindowClosing
 
