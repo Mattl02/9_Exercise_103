@@ -20,8 +20,17 @@ public class AppointmentGUI extends javax.swing.JFrame {
     public AppointmentGUI() {
         initComponents();
         
+        this.setSize(400, 250);
+        
         listAppointments.setModel(model);
         listAppointments.setComponentPopupMenu(jPopupMenu1);
+        
+        try{
+            model.load();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -66,6 +75,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         jPopupMenu1.add(miUpdate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         panelForm.setBorder(javax.swing.BorderFactory.createTitledBorder("Termine"));
@@ -107,6 +121,15 @@ public class AppointmentGUI extends javax.swing.JFrame {
             model.add(dialog.getAppointment(), idx);
         }
     }//GEN-LAST:event_miUpdateActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try{
+            model.save();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

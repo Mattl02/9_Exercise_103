@@ -1,4 +1,10 @@
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
@@ -25,6 +31,34 @@ public class AppointmentModell extends AbstractListModel{
     public void remove(int idx){
         appointments.remove(idx);
         this.fireContentsChanged(this, idx, appointments.size()-1);
+    }
+    
+    public void save() throws Exception{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("./appointments.bin")));
+        
+        for (Appointment a : appointments) {
+            oos.writeObject(a);
+        }
+        
+        oos.flush();
+        oos.close();
+    }
+    
+    public void load() throws Exception{
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("./appointments.bin")));
+        
+        try{
+            Object o;
+            while((o = ois.readObject()) != null){
+                appointments.add((Appointment) o);
+            }
+        }
+        catch(EOFException eof){
+            
+        }
+        
+        ois.close();
+        this.fireIntervalAdded(this, 0, appointments.size());
     }
     
     @Override

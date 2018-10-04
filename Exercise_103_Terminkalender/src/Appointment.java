@@ -1,18 +1,18 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 
 /**
  *
  * @author Matthias
  */
-public class Appointment{
+public class Appointment implements Serializable{
     private LocalDateTime date;
     private String text;
 
-    public Appointment(LocalDateTime date, String text) {
+    public Appointment(LocalDateTime date, String text){
         this.date = date;
         this.text = text;
     }
