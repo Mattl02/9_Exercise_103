@@ -1,5 +1,7 @@
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /*
@@ -19,9 +21,16 @@ public class AppointmentDlg extends javax.swing.JDialog {
     /**
      * Creates new form AppointmentDlg
      */
-    public AppointmentDlg(java.awt.Frame parent, boolean modal) {
+    public AppointmentDlg(java.awt.Frame parent, boolean modal, Appointment a) {
         super(parent, modal);
         initComponents();
+        this.appointment = a;
+        this.tfJahr.setText(a.getDate().getYear()+"");
+        this.tfMonat.setText(a.getDate().format(DateTimeFormatter.ofPattern("MM")));
+        this.tfTag.setText(a.getDate().getDayOfMonth()+"");
+        this.tfStunde.setText(a.getDate().getHour()+"");
+        this.tfMinute.setText(a.getDate().getMinute()+"");
+        this.tfText.setText(a.getText());
     }
 
     public boolean isOk() {
@@ -122,6 +131,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
                 ("00"+tfTag.getText()).substring(tfTag.getText().length()),
                 ("00"+tfStunde.getText()).substring(tfStunde.getText().length()),
                 ("00"+tfMinute.getText()).substring(tfMinute.getText().length()));
+        
+        //String s1 = tfJahr.getText()+"-"+tfMonat.getText()+"-"+tfTag.getText()+"-"+tfStunde.getText()+"-"+tfMinute.getText();
         LocalDateTime date = LocalDateTime.parse(s,
                 DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm"));
         appointment = new Appointment(date, tfText.getText());
@@ -164,7 +175,7 @@ public class AppointmentDlg extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AppointmentDlg dialog = new AppointmentDlg(new javax.swing.JFrame(), true);
+                AppointmentDlg dialog = new AppointmentDlg(new javax.swing.JFrame(), true, new Appointment(LocalDateTime.now(), "Text"));
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

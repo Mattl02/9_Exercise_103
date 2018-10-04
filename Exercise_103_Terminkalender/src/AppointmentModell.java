@@ -8,7 +8,7 @@ import javax.swing.AbstractListModel;
  * @author Matthias
  */
 public class AppointmentModell extends AbstractListModel{
-
+    
     private ArrayList<Appointment> appointments = new ArrayList<>();
     
     

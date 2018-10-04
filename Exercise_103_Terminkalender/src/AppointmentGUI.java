@@ -1,3 +1,6 @@
+
+import java.time.LocalDateTime;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -83,7 +86,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
-        AppointmentDlg dialog = new AppointmentDlg(this, true);
+        AppointmentDlg dialog = new AppointmentDlg(this, true, new Appointment(LocalDateTime.now(), "Text"));
         dialog.setVisible(true);
         if(dialog.isOk()){
             model.add(dialog.getAppointment());
@@ -97,7 +100,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
     private void miUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUpdateActionPerformed
         int idx = listAppointments.getSelectedIndex();
         
-        AppointmentDlg dialog = new AppointmentDlg(this, true);
+        AppointmentDlg dialog = new AppointmentDlg(this, true, (Appointment) model.getElementAt(idx));
         dialog.setVisible(true);
         if(dialog.isOk()){
             model.remove(idx);
