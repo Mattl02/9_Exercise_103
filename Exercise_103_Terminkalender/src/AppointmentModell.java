@@ -61,6 +61,10 @@ public class AppointmentModell extends AbstractListModel{
         this.fireIntervalAdded(this, 0, appointments.size());
     }
     
+    public void sort(){
+        
+    }
+    
     @Override
     public int getSize() {
         return appointments.size();
