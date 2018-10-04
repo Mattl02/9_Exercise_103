@@ -16,6 +16,12 @@ public class AppointmentModell extends AbstractListModel{
         appointments.add(a);
         this.fireIntervalAdded(this, appointments.size() - 1, appointments.size() - 1);
     }
+    
+    public void remove(int idx){
+        appointments.remove(idx);
+        this.fireContentsChanged(this, idx, appointments.size()-1);
+    }
+    
     @Override
     public int getSize() {
         return appointments.size();

@@ -32,6 +32,8 @@ public class AppointmentGUI extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         miAdd = new javax.swing.JMenuItem();
+        miRemove = new javax.swing.JMenuItem();
+        miUpdate = new javax.swing.JMenuItem();
         panelForm = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listAppointments = new javax.swing.JList<>();
@@ -43,6 +45,22 @@ public class AppointmentGUI extends javax.swing.JFrame {
             }
         });
         jPopupMenu1.add(miAdd);
+
+        miRemove.setText("remove");
+        miRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRemoveActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(miRemove);
+
+        miUpdate.setText("update");
+        miUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miUpdateActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(miUpdate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -71,6 +89,14 @@ public class AppointmentGUI extends javax.swing.JFrame {
             model.add(dialog.getAppointment());
         }
     }//GEN-LAST:event_miAddActionPerformed
+
+    private void miRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRemoveActionPerformed
+        model.remove(listAppointments.getSelectedIndex());
+    }//GEN-LAST:event_miRemoveActionPerformed
+
+    private void miUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,6 +138,8 @@ public class AppointmentGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> listAppointments;
     private javax.swing.JMenuItem miAdd;
+    private javax.swing.JMenuItem miRemove;
+    private javax.swing.JMenuItem miUpdate;
     private javax.swing.JPanel panelForm;
     // End of variables declaration//GEN-END:variables
 }
