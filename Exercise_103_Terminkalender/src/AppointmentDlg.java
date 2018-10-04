@@ -116,7 +116,8 @@ public class AppointmentDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUebernehmenActionPerformed
-        String s = String.format("%s-%s-%s-%s-%s", ("0000"+tfJahr.getText()).substring(tfJahr.getText().length()),
+        String s = String.format("%s-%s-%s-%s-%s",
+                ("0000"+tfJahr.getText()).substring(tfJahr.getText().length()),
                 ("00"+tfMonat.getText()).substring(tfMonat.getText().length()),
                 ("00"+tfTag.getText()).substring(tfTag.getText().length()),
                 ("00"+tfStunde.getText()).substring(tfStunde.getText().length()),
