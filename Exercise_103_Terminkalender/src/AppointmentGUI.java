@@ -95,7 +95,14 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_miRemoveActionPerformed
 
     private void miUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUpdateActionPerformed
-        // TODO add your handling code here:
+        int idx = listAppointments.getSelectedIndex();
+        
+        AppointmentDlg dialog = new AppointmentDlg(this, true);
+        dialog.setVisible(true);
+        if(dialog.isOk()){
+            model.remove(idx);
+            model.add(dialog.getAppointment(), idx);
+        }
     }//GEN-LAST:event_miUpdateActionPerformed
 
     /**
