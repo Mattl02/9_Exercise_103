@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
  * @author Matthias
  */
 public class AppointmentGUI extends javax.swing.JFrame {
-
-    // hello there *
     
     private AppointmentModell model = new AppointmentModell();
     /**
