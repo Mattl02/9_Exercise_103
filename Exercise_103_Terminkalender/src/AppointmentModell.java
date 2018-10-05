@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.AbstractListModel;
 
 
@@ -21,6 +22,8 @@ public class AppointmentModell extends AbstractListModel{
     public void add(Appointment a){
         appointments.add(a);
         this.fireIntervalAdded(this, appointments.size() - 1, appointments.size() - 1);
+        this.sort();
+        //this.fireIntervalAdded(this, appointments.size() - 1, appointments.size() - 1);
     }
     
     public void add(Appointment a, int idx){
@@ -61,7 +64,8 @@ public class AppointmentModell extends AbstractListModel{
     }
     
     public void sort(){
-        
+        Collections.sort(appointments, new SortByDate());
+        this.fireContentsChanged(this, 0, appointments.size() - 1);
     }
     
     @Override
